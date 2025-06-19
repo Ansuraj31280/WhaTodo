@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Search Results{% endblock %}
+{% block body %}
+<div class="container my-4">
+  <h2>Search Results for "{{ query }}"</h2>
+  {% if results %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Sno.</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Time</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for todo in results %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ todo.title }}</td>
+          <td>{{ todo.desc }}</td>
+          <td>{{ todo.date_created.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+          <td>
+            <a href="/update/{{ todo.sno }}" class="btn btn-sm btn-primary">Update</a>
+            <a href="/delete/{{ todo.sno }}" class="btn btn-sm btn-danger">Delete</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="alert alert-warning">No tasks found matching your query.</div>
+  {% endif %}
+</div>
+{% endblock %}

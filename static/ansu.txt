@@ -1,0 +1,1 @@
+this txt file is in static used to host as its  in flask 
